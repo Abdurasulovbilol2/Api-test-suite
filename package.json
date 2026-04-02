@@ -14,10 +14,23 @@
     "report:html": "playwright show-report",
     "report:allure": "allure generate ./allure-results --clean -o ./allure-report"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "keywords": [
+    "playwright",
+    "testing",
+    "api",
+    "automation",
+    "e2e",
+    "rest-api",
+    "frontend",
+    "performance",
+    "ci-cd",
+    "github-actions",
+    "axios",
+    "zod"
+  ],
+  "author": "Abdurasulov Bilol",
+  "license": "MIT",
+  "description": "Comprehensive testing framework for REST APIs and frontend UI with Playwright, Axios, and GitHub Actions CI/CD",
   "devDependencies": {
     "@playwright/test": "^1.59.1",
     "@types/node": "^25.5.0",
