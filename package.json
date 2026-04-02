@@ -4,6 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "playwright test",
+    "test:api": "playwright test tests/auth tests/users tests/performance",
+    "test:frontend": "playwright test tests/frontend",
     "test:pw": "playwright test --grep \"@pw\"",
     "test:axios": "playwright test --grep \"@axios\"",
     "test:auth": "playwright test tests/auth",
