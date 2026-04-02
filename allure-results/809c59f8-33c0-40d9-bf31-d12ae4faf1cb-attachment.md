@@ -1,0 +1,53 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: auth\auth.spec.ts >> Auth API >> POST /auth/login returns a token
+- Location: tests\auth\auth.spec.ts:6:7
+
+# Error details
+
+```
+Error: apiRequestContext.post: getaddrinfo ENOTFOUND api.example.com
+Call log:
+  - → POST https://api.example.com/auth/login
+    - user-agent: Playwright/1.59.1 (x64; windows 10.0) node/22.16
+    - accept: */*
+    - accept-encoding: gzip,deflate,br
+    - Content-Type: application/json
+    - content-length: 39
+
+```
+
+# Test source
+
+```ts
+  1  | import { config } from "./config";
+  2  | import { APIRequestContext } from "@playwright/test";
+  3  | 
+  4  | export async function getToken(api: APIRequestContext): Promise<string> {
+> 5  |   const response = await api.post("/auth/login", {
+     |                              ^ Error: apiRequestContext.post: getaddrinfo ENOTFOUND api.example.com
+  6  |     data: {
+  7  |       username: config.username,
+  8  |       password: config.password,
+  9  |     },
+  10 |   });
+  11 | 
+  12 |   if (!response.ok()) {
+  13 |     throw new Error("Auth failed");
+  14 |   }
+  15 | 
+  16 |   const body = (await response.json()) as { token?: string };
+  17 |   if (!body.token) {
+  18 |     throw new Error("Auth response did not include token");
+  19 |   }
+  20 | 
+  21 |   return body.token;
+  22 | }
+  23 | 
+```
